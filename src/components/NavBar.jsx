@@ -5,7 +5,7 @@ export default function NavBar() {
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm">
-        <div className="container">
+        <div className="container-fluid px-3">
           <Link className="navbar-brand fw-bold text-dark" to="/">
             SimpleNote
           </Link>

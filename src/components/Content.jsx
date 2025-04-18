@@ -7,7 +7,7 @@ export default function NoteArea() {
       style={{ paddingTop: "15vh" }}
     >
       <div className="container" style={{ maxWidth: "800px", Height: "200px" }}>
-        <h2 className="text-center mb-4 fw-bold">Start Taking Notes?</h2>
+        <h2 className="text-center mb-4 fw-bold">Take a Note.</h2>
 
         <div
           className="card shadow-sm border-0 p-3"
@@ -18,13 +18,13 @@ export default function NoteArea() {
             <input
               type="text"
               className="form-control border-0 shadow-none flex-grow-1"
-              placeholder="Pen Down Your Thoughts"
+              placeholder="Note anything"
               style={{ minWidth: "180px" }}
             />
 
             {/* Attachment button */}
             <button
-              className="btn btn-light rounded-circle d-flex align-items-center justify-content-center"
+              className="btn btn-light rounded-circle d-flex align-items-center justify-content-center  "
               style={{ width: "38px", height: "38px" }}
             >
               <svg
