@@ -10,8 +10,8 @@ export default function NoteArea() {
         <h2 className="text-center mb-4 fw-bold">Take a Note.</h2>
 
         <div
-          className="card shadow-sm border-0 p-3"
-          style={{ borderRadius: "40px" }}
+          className="card shadow-sm border-0"
+          style={{ borderRadius: "30px" }}
         >
           <div className="card-body d-flex align-items-center gap-2 flex-wrap">
             {/* Search input */}
@@ -25,14 +25,13 @@ export default function NoteArea() {
             {/* Attachment button */}
             <button
               className="btn btn-light rounded-circle d-flex align-items-center justify-content-center  "
-              style={{ width: "38px", height: "38px" }}
+              style={{ width: "40px", height: "40px" }}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
+                style={{ width: "30px", height: "30px" }}
                 fill="currentColor"
-                class="bi bi-plus"
+                className="bi bi-plus"
                 viewBox="0 0 16 16"
               >
                 <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4" />
