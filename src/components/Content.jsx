@@ -7,7 +7,7 @@ export default function NoteArea() {
       style={{ paddingTop: "15vh" }}
     >
       <div className="container" style={{ maxWidth: "800px", Height: "200px" }}>
-        <h2 className="text-center mb-4 fw-bold">Take a Note.</h2>
+        <h2 className="text-center mb-4 fw-bold">New Note.</h2>
 
         <div
           className="card shadow-sm border-0"
