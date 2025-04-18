@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 export default function NavBar() {
   return (
     <div>
-      <nav className="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm">
+      <nav className="navbar navbar-expand-lg navbar-light bg-white sticky-top">
         <div className="container-fluid px-3">
           <Link
             to="/landing-page"
@@ -37,7 +37,10 @@ export default function NavBar() {
               <path d="M9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.5zm0 1v2A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z" />
             </svg>
           </Link>
-          <Link  to ="/note-area" className="nav-link d-inline-block me-3 p-2 rounded hover-shadow btn btn-light  d-flex align-items-center">
+          <Link
+            to="/note-area"
+            className="nav-link d-inline-block me-3 p-2 rounded hover-shadow btn btn-light  d-flex align-items-center"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="26"
@@ -62,11 +65,6 @@ export default function NavBar() {
           </button>
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav ms-auto">
-              <li className="nav-item">
-                <button className="btn btn-light rounded-pill d-flex align-items-center">
-                  Features
-                </button>
-              </li>
               <li className="nav-item">
                 <a className="nav-link text-dark" href="#download">
                   Download
