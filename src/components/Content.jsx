@@ -7,9 +7,7 @@ export default function NoteArea() {
       style={{ paddingTop: "15vh" }}
     >
       <div className="container" style={{ maxWidth: "800px", Height: "200px" }}>
-        <h1 className="text-center mb-4 fw-bold">
-          Start Taking Notes?
-        </h1>
+        <h2 className="text-center mb-4 fw-bold">Start Taking Notes?</h2>
 
         <div
           className="card shadow-sm border-0 p-3"
@@ -24,7 +22,7 @@ export default function NoteArea() {
               style={{ minWidth: "180px" }}
             />
 
-            {/* Action buttons */}
+            {/* Attachment button */}
             <button
               className="btn btn-light rounded-circle d-flex align-items-center justify-content-center"
               style={{ width: "38px", height: "38px" }}
@@ -41,6 +39,7 @@ export default function NoteArea() {
               </svg>
             </button>
 
+            {/* Quote button */}
             <button className="btn btn-light rounded-pill d-flex align-items-center">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -74,7 +73,7 @@ export default function NoteArea() {
                 </svg>
               </button>
 
-              {/* Soundwave / Voice AI */}
+              {/* Send Button*/}
               <button
                 className="btn btn-dark rounded-circle d-flex align-items-center justify-content-center"
                 style={{ width: "38px", height: "38px" }}
