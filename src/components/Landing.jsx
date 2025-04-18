@@ -8,7 +8,7 @@ export default function LandingPage() {
       <nav className="navbar navbar-light bg-light">
         <a className="navbar-brand" href="#">
           <img
-            src="https://pixnio.com/free-images/2017/02/10/2017-02-10-17-34-36.jpg"
+            src="/home/dean/Moringa/Phase2/notepad-app/src/image/Screenshot From 2025-04-18 19-40-41.png"
             width="30"
             height="30"
             className="d-inline-block align-top"
@@ -59,8 +59,12 @@ export default function LandingPage() {
       </div>
 
       {/* Footer */}
-      <footer className="text-center py-3 text-secondary small">
-        &copy; 2025 NotePad. All rights reserved.
+      <footer className="container py-4 mt-5 bg-light">
+        <div className="d-flex align-items-center">
+          <a href="#" className="text-secondary text-decoration-none ms-4">
+            Privacy & Terms
+          </a>
+        </div>
       </footer>
     </>
   );
