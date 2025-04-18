@@ -59,8 +59,8 @@ export default function LandingPage() {
       </div>
 
       {/* Footer */}
-      <footer className="container py-4 mt-5 bg-light">
-        <div className="d-flex align-items-center">
+      <footer className="container-fluid bg-light py-5">
+        <div className="d-flex align-items-center justify-content-center">
           <a href="#" className="text-secondary text-decoration-none ms-4">
             Privacy & Terms
           </a>
