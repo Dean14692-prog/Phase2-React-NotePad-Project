@@ -38,7 +38,7 @@ export default function NoteArea() {
               <input
                 type="text"
                 value={note}
-                onChange={(e) => setNote(e.target.value)}
+                onChange={(event) => setNote(event.target.value)}
                 className="form-control border-0 shadow-none flex-grow-1"
                 placeholder="Note anything"
                 style={{ minWidth: "180px" }}
