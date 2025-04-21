@@ -33,7 +33,7 @@ export default function NavBar() {
             overlay={homePopover}
           >
             <Link
-              to="/landing-page"
+              to="/landing"
               className="nav-link d-inline-block me-3 p-2 rounded hover-shadow btn btn-light d-flex align-items-center"
             >
               <svg
@@ -56,7 +56,7 @@ export default function NavBar() {
             overlay={notesListPopover}
           >
             <Link
-              to="/notes-list"
+              to="/notes"
               className="nav-link d-inline-block me-3 p-2 rounded hover-shadow btn btn-light d-flex align-items-center"
             >
               <svg
@@ -80,7 +80,7 @@ export default function NavBar() {
             overlay={noteAreaPopover}
           >
             <Link
-              to="/note-area"
+              to="/home"
               className="nav-link d-inline-block me-3 p-2 rounded hover-shadow btn btn-light d-flex align-items-center"
             >
               <svg
