@@ -15,20 +15,20 @@ export default function NoteList() {
 
   // Function to get the first 3 words of the note text
   function getFirstThreeWords(text) {
-    const words = text.split(" "); // Split the text into an array of words
-    const firstThreeWords = words.slice(0, 3).join(" "); // Join the first 3 words
-
-    // If there are more than 3 words, add "..."
-    if (words.length > 3) {
-      return firstThreeWords + "...";
-    }
-
-    return firstThreeWords;
+    const words = text.split(" ");
+    const firstThreeWords = words.slice(0, 3).join(" ");
+    return words.length > 3 ? firstThreeWords + "..." : firstThreeWords;
   }
 
   // When user clicks on a note
   function handleNoteClick(note) {
     setSelectedNote(note);
+  }
+
+  // Format date to something readable
+  function showDateTime(dateTimeString) {
+    const date = new Date(dateTimeString);
+    return date.toLocaleString(); // Example: "4/21/2025, 10:15:00 AM"
   }
 
   return (
@@ -71,6 +71,10 @@ export default function NoteList() {
               <div className="card-body">
                 <h5 className="card-title">Note Content</h5>
                 <p className="card-text">{selectedNote.text}</p>
+                {/* Date and time display */}
+                <p className="text-muted">
+                  <strong>Created At:</strong> {showDateTime(selectedNote.date)}
+                </p>
               </div>
             </div>
           ) : (
