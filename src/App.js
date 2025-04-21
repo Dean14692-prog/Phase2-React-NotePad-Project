@@ -9,9 +9,9 @@ import NoteArea from "./pages/HomePage";
 export default function App() {
   return (
     <div className="App">
-      
       <Routes>
-        <Route path="/" element={<LandingPage />} />
+        <Route index element={<LandingPage />} />
+        <Route path="/landing" element={<LandingPage />} />
         <Route path="/notes" element={<NoteList />} />
         <Route path="/home" element={<NoteArea />} />
       </Routes>
