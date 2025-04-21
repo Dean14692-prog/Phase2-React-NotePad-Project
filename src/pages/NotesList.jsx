@@ -44,8 +44,10 @@ export default function NoteList() {
 
       <div className="container fluid d-flex">
         {/* Notes list */}
-        <div style={{ flex: 1, marginRight: "10px" }}>
-          <ul className="list-group" style={{ backgroundColor: "#a19286" }}>
+        <div
+          style={{ flex: 1, marginRight: "10px" }}
+        >
+          <ul className="list-group">
             {notes.map((note) => (
               <li
                 key={note.id}
