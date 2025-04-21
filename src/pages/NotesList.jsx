@@ -2,79 +2,72 @@ import React, { useEffect, useState } from "react";
 import NavBar from "../components/NavBar";
 
 export default function NoteList() {
-  const [notes, setNotes] = useState([]); // All notes from server
-  const [selectedNote, setSelectedNote] = useState(null); // Selected note
+  const [notes, setNotes] = useState([]);
+  const [selectedNote, setSelectedNote] = useState(null);
 
-  // Fetch notes from JSON server
   useEffect(() => {
     fetch("http://localhost:3001/notes")
-      .then((response) => response.json())
+      .then((res) => res.json())
       .then((data) => setNotes(data))
-      .catch((error) => console.error("Error fetching notes:", error));
+      .catch((err) => console.log("Error fetching notes:", err));
   }, []);
 
   // Function to get the first 3 words of the note text
   function getFirstThreeWords(text) {
-    const words = text.split(" ");
-    const firstThreeWords = words.slice(0, 3).join(" ");
-    return words.length > 3 ? firstThreeWords + "..." : firstThreeWords;
+    const words = text.split(" "); // Split the text into an array of words
+
+    //Slice the first 3 words from the array
+    const firstThreeWordsArray = words.slice(0, 3);
+
+    // Join the first 3 words with a space
+    const firstThreeWords = firstThreeWordsArray.join(" ");
+
+    // If there are more than 3 words, add "..."
+    if (words.length > 3) {
+      return firstThreeWords + "...";
+    }
+
+    return firstThreeWords;
   }
 
-  // When user clicks on a note
-  function handleNoteClick(note) {
-    setSelectedNote(note);
-  }
-
-  // Format date to something readable
   function showDateTime(dateTimeString) {
     const date = new Date(dateTimeString);
-    return date.toLocaleString(); // Example: "4/21/2025, 10:15:00 AM"
+    return date.toLocaleString();
   }
 
   return (
     <div>
       <NavBar />
-      <h1 className="text-center mt-4">Notes</h1>
+      <h2 className="text-center">Notes</h2>
 
-      <div className="container mt-4 d-flex">
-        {/* Left side: Note list */}
-        <div style={{ flex: 1, paddingRight: "20px" }}>
-          <table className="table table-striped table-hover">
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>Note</th>
-              </tr>
-            </thead>
-            <tbody>
-              {notes.map((note) => (
-                <tr
-                  key={note.id}
-                  onClick={() => handleNoteClick(note)}
-                  style={{ cursor: "pointer" }}
-                >
-                  <td>{note.id}</td>
-                  <td>{getFirstThreeWords(note.text)}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+      <div className="container fluid d-flex">
+        {/* Notes list */}
+        <div style={{ flex: 1, marginRight: "10px" }}>
+          <ul className="list-group" style={{ backgroundColor: "#a19286" }}>
+            {notes.map((note) => (
+              <li
+                key={note.id}
+                className="list-group-item list-group-item-action border-0" // Remove borders with Bootstrap's border-0 class
+                style={{ cursor: "pointer" }}
+                onClick={() => setSelectedNote(note)}
+              >
+                <div className="fw-bold">{showDateTime(note.date)}</div>
+                {getFirstThreeWords(note.text)}
+              </li>
+            ))}
+          </ul>
         </div>
 
-        {/* Right side: Selected note display */}
-        <div style={{ flex: 2, padding: "20px", borderLeft: "1px solid #ddd" }}>
+        {/* Note detail display */}
+        <div style={{ flex: 2, padding: "10px", borderLeft: "1px solid #ddd" }}>
           {selectedNote ? (
             <div className="card">
               <div className="card-header">
-                <strong>Note ID:</strong> {selectedNote.id}
+                <strong>Created At:</strong> {showDateTime(selectedNote.date)}
               </div>
               <div className="card-body">
                 <h5 className="card-title">Note Content</h5>
                 <p className="card-text">{selectedNote.text}</p>
-                {/* Date and time display */}
-                <p className="text-muted">
-                  <strong>Created At:</strong> {showDateTime(selectedNote.date)}
-                </p>
               </div>
             </div>
           ) : (
