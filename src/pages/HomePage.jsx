@@ -3,8 +3,8 @@ import NavBar from "../components/NavBar";
 
 export default function NoteArea() {
     return (
-        <div>
-            <NavBar />
+      <div>
+        <NavBar />
         <div
           className="d-flex justify-content-center align-items-start vh-100"
           style={{ paddingTop: "15vh" }}
@@ -80,18 +80,18 @@ export default function NoteArea() {
                   {/* Send Button*/}
                   <button
                     className="btn btn-dark rounded-circle d-flex align-items-center justify-content-center"
-                    style={{ width: "38px", height: "38px" }}
+                    style={{ width: "38px", height: "38px", color: "white" }} // the button sets the "color"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="26"
                       height="26"
-                      fill-rule="currentColor"
+                      fill="currentColor"
                       className="bi bi-arrow-up"
                       viewBox="0 0 16 16"
                     >
                       <path
-                        fill-rule="evenodd"
+                        fillRule="evenodd"
                         d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5"
                       />
                     </svg>
