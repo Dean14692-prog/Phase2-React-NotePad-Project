@@ -62,7 +62,7 @@ export default function NoteArea() {
                   {/* Microphone */}
                   <button
                     className="btn btn-light rounded-circle d-flex align-items-center justify-content-center"
-                    style={{ width: "38px", height: "38px" }}
+                    style={{ width: "40px", height: "40px", color: "#a19286" }}
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -80,12 +80,12 @@ export default function NoteArea() {
                   {/* Send Button*/}
                   <button
                     className="btn btn-dark rounded-circle d-flex align-items-center justify-content-center"
-                    style={{ width: "38px", height: "38px", color: "white" }} // the button sets the "color"
+                    style={{ width: "40px", height: "40px", color: "white" }}
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      width="26"
-                      height="26"
+                      width="32"
+                      height="32"
                       fill="currentColor"
                       className="bi bi-arrow-up"
                       viewBox="0 0 16 16"
