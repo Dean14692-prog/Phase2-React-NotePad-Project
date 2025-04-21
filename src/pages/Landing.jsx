@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function LandingPage() {
   return (
@@ -90,9 +91,12 @@ export default function LandingPage() {
             <p className="mb-4">
               Your thoughts, neatly captured and always accessible.
             </p>
-            <button className="btn btn-primary rounded-pill px-4">
-              Start Noting
-            </button>
+
+            <Link to="/home">
+              <button className="btn btn-primary rounded-pill px-4">
+                Start Noting
+              </button>
+            </Link>
           </div>
 
           <div className="col-md-6">
