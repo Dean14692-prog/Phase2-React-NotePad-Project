@@ -4,6 +4,7 @@ import { Routes, Route } from "react-router-dom";
 import LandingPage from "./pages/Landing";
 import NoteList from "./pages/NotesList";
 import NoteArea from "./pages/HomePage";
+import NoPage from "./pages/NoPage";
 
 
 export default function App() {
@@ -14,6 +15,7 @@ export default function App() {
         <Route path="/landing" element={<LandingPage />} />
         <Route path="/notes" element={<NoteList />} />
         <Route path="/home" element={<NoteArea />} />
+        <Route path="*" element={<NoPage />} />
       </Routes>
     </div>
   );
