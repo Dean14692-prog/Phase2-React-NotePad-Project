@@ -4,20 +4,30 @@ import NavBar from "../components/NavBar";
 export default function NoteArea() {
   const [note, setNote] = useState("");
 
-  const handleSend = async () => {
-    if (!note.trim()) return; // Prevent sending empty notes
+async function handleSend (){
+  // Check if the note is empty (or just spaces), if it is, don't send it
+  if (!note.trim()) {
+    return; // Stop the function if the note is empty
+  }
 
-    try {
-      await fetch("http://localhost:3001/notes", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ text: note }),
-      });
-      setNote("");
-    } catch (error) {
-      console.error("Error saving note:", error);
-    }
-  };
+  try {
+    // Sending the note to the server
+    await fetch("http://localhost:3001/notes", {
+      method: "POST", // This means we are sending data to the server
+      headers: {
+        "Content-Type": "application/json", // Telling the server that we are sending JSON
+      },
+      body: JSON.stringify({ text: note }), // Convert the note to a string (JSON format)
+    });
+
+    // After sending, clear the note input (set it back to empty)
+    setNote("");
+  } catch (error) {
+    // If something goes wrong, log the error to the console
+    console.log("Error saving note:", error);
+  }
+};
+
 
   return (
     <div>
