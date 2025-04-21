@@ -14,9 +14,11 @@ export default function NoteList() {
 
   // Function to get the first 3 words of the note text
   function getFirstThreeWords(text) {
+    if (!text) return ""; // Return an empty string if text is undefined, null, or empty
+
     const words = text.split(" "); // Split the text into an array of words
 
-    //Slice the first 3 words from the array
+    // Slice the first 3 words from the array
     const firstThreeWordsArray = words.slice(0, 3);
 
     // Join the first 3 words with a space
