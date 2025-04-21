@@ -6,7 +6,7 @@ export default function LandingPage() {
     <>
       {/* Navbar */}
       <nav className="navbar navbar-light bg-light">
-        <a className="navbar-brand d-flex align-items-center ms-1" href="#">
+        <a className="navbar-brand d-flex align-items-center ms-1">
           <img
             src="https://ipprinting.my/wp-content/uploads/2022/08/Notepad-Product-Spec_02-scaled.jpg"
             width="40"
