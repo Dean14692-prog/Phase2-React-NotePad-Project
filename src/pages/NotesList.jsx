@@ -12,26 +12,23 @@ export default function NoteList() {
       .catch((err) => console.log("Error fetching notes:", err));
   }, []);
 
-  // Function to get the first 3 words of the note text
-  function getFirstThreeWords(text) {
-    if (!text) return ""; // Return an empty string if text is undefined, null, or empty
-
-    const words = text.split(" "); // Split the text into an array of words
-
-    // Slice the first 3 words from the array
-    const firstThreeWordsArray = words.slice(0, 3);
-
-    // Join the first 3 words with a space
-    const firstThreeWords = firstThreeWordsArray.join(" ");
-
-    // If there are more than 3 words, add "..."
-    if (words.length > 3) {
-      return firstThreeWords + "...";
-    }
-
-    return firstThreeWords;
+  // Handle note click
+  function handleNoteClick(note) {
+    setSelectedNote(note);
   }
 
+  // Get the first 3 words of the note text
+  function getFirstThreeWords(text) {
+    if (!text) return "";
+
+    const words = text.split(" ");
+    const firstThreeWordsArray = words.slice(0, 3);
+    const firstThreeWords = firstThreeWordsArray.join(" ");
+
+    return words.length > 3 ? firstThreeWords + "..." : firstThreeWords;
+  }
+
+  // Format date and time
   function showDateTime(dateTimeString) {
     const date = new Date(dateTimeString);
     return date.toLocaleString();
@@ -44,16 +41,14 @@ export default function NoteList() {
 
       <div className="container fluid d-flex">
         {/* Notes list */}
-        <div
-          style={{ flex: 1, marginRight: "10px" }}
-        >
+        <div style={{ flex: 1, marginRight: "10px" }}>
           <ul className="list-group">
             {notes.map((note) => (
               <li
                 key={note.id}
-                className="list-group-item list-group-item-action border-0" // Remove borders with Bootstrap's border-0 class
+                className="list-group-item list-group-item-action border-0"
                 style={{ cursor: "pointer" }}
-                onClick={() => setSelectedNote(note)}
+                onClick={() => handleNoteClick(note)}
               >
                 <div className="fw-bold">{showDateTime(note.date)}</div>
                 {getFirstThreeWords(note.text)}
