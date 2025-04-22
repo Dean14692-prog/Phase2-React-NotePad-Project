@@ -17,15 +17,24 @@ export default function NoteList() {
     setSelectedNote(note);
   }
 
-  // Get the first 3 words of the note text
+  // Function to get the first 3 words of the note text
   function getFirstThreeWords(text) {
-    if (!text) return "";
+    if (!text) return ""; // Return an empty string if text is undefined, null, or empty
 
-    const words = text.split(" ");
+    const words = text.split(" "); // Split the text into an array of words
+
+    // Slice the first 3 words from the array
     const firstThreeWordsArray = words.slice(0, 3);
+
+    // Join the first 3 words with a space
     const firstThreeWords = firstThreeWordsArray.join(" ");
 
-    return words.length > 3 ? firstThreeWords + "..." : firstThreeWords;
+    // If there are more than 3 words, add "..."
+    if (words.length > 3) {
+      return firstThreeWords + "...";
+    }
+
+    return firstThreeWords;
   }
 
   // Format date and time
