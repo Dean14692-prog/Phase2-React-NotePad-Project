@@ -16,6 +16,35 @@ export default function NoteList() {
     setSelectedNote(note);
   }
 
+  function handleDeleteNote(id) {
+    fetch(`http://localhost:3001/notes/${id}`, {
+      method: "DELETE",
+    })
+      .then(() => {
+        setNotes(notes.filter((note) => note.id !== id));
+        setSelectedNote(null);
+      })
+      .catch((err) => console.log("Error deleting note:", err));
+  }
+
+function handleDownloadNote(note) {
+  // Create a new text file from the note's text
+  const file = new Blob([note.text], { type: "text/plain" });
+
+  // Create an anchor element to trigger the download
+  const link = document.createElement("a");
+
+  // Create a link to the file we just created
+  link.href = URL.createObjectURL(file);
+
+  // Set the name of the file to be downloaded
+  link.download = `Note-${note.id}.txt`;
+
+  // Trigger the download
+  link.click();
+}
+
+
   // Function to get the first 3 words of the note text
   function getFirstThreeWords(text) {
     if (!text) return ""; // Return an empty string if text is undefined, null, or empty
@@ -36,19 +65,36 @@ export default function NoteList() {
     return firstThreeWords;
   }
 
-  function showDateTime(dateTimeString) {
-    const date = new Date(dateTimeString);
-    return date.toLocaleString();
-  }
-
   let noteDetails;
   if (selectedNote === null) {
     noteDetails = <p>Select a note to view details</p>;
   } else {
     noteDetails = (
-      <div className="card">
-        <div className="card-header">
-          <strong>Created At:</strong> {showDateTime(selectedNote.date)}
+      <div className="card bg-light">
+        <div className="card-header d-flex justify-content-start align-items-center">
+          <div>
+            <button
+              className="btn btn-sm btn-danger rounded-circle p-3"
+              onClick={() => handleDeleteNote(selectedNote.id)}
+              style={{
+                fontSize: "20px",
+                lineHeight: "1",
+                width: "40px",
+                height: "40px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              &times;
+            </button>
+            <button
+              className="btn btn-sm btn-primary ms-2"
+              onClick={() => handleDownloadNote(selectedNote)}
+            >
+              Download
+            </button>
+          </div>
         </div>
         <div className="card-body">
           <h5 className="card-title">Note Content</h5>
@@ -74,7 +120,6 @@ export default function NoteList() {
                 style={{ cursor: "pointer" }}
                 onClick={() => handleNoteClick(note)}
               >
-                <div className="fw-bold">{showDateTime(note.date)}</div>
                 {getFirstThreeWords(note.text)}
               </li>
             ))}

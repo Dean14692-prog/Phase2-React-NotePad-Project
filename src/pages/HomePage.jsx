@@ -1,33 +1,67 @@
 import React, { useState } from "react";
 import NavBar from "../components/NavBar";
 
+// Declare webkitSpeechRecognition as a global variable to avoid ESLint error
+const SpeechRecognition =
+  window.SpeechRecognition || window.webkitSpeechRecognition;
+
 export default function NoteArea() {
   const [note, setNote] = useState("");
+  const [isListening, setIsListening] = useState(false); // Track listening state
 
-async function handleSend (){
-  // Check if the note is empty (or just spaces), if it is, don't send it
-  if (!note.trim()) {
-    return; // Stop the function if the note is empty
+  // Handle the start of voice recognition
+  const handleStartListening = () => {
+    setIsListening(true); // Set listening state to true
+  };
+
+  // Handle the end of voice recognition
+  const handleStopListening = () => {
+    setIsListening(false); // Set listening state to false
+  };
+
+  // Handle speech recognition result
+  const handleRecognitionResult = (event) => {
+    const spokenText = event.results[0][0].transcript; // Get the recognized text
+    setNote((prevNote) => prevNote + " " + spokenText); // Append the spoken text to the note
+  };
+
+  async function handleSend() {
+    if (!note.trim()) {
+      return; // Don't send if the note is empty
+    }
+
+    try {
+      await fetch("http://localhost:3001/notes", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ text: note }),
+      });
+
+      setNote(""); // Clear note after sending
+    } catch (error) {
+      console.log("Error saving note:", error);
+    }
   }
 
-  try {
-    // Sending the note to the server
-    await fetch("http://localhost:3001/notes", {
-      method: "POST", // This means we are sending data to the server
-      headers: {
-        "Content-Type": "application/json", // Telling the server that we are sending JSON
-      },
-      body: JSON.stringify({ text: note }), // Convert the note to a string (JSON format)
-    });
+  // Start voice recognition
+  function startVoiceRecognition() {
+    if (!SpeechRecognition) {
+      alert("Your browser doesn't support voice input.");
+      return;
+    }
 
-    // After sending, clear the note input (set it back to empty)
-    setNote("");
-  } catch (error) {
-    // If something goes wrong, log the error to the console
-    console.log("Error saving note:", error);
+    const recognition = new SpeechRecognition();
+    recognition.lang = "en-US"; // Set the language for recognition
+
+    // Assign separate functions for onstart, onend, and onresult
+    recognition.onstart = handleStartListening;
+    recognition.onend = handleStopListening;
+    recognition.onresult = handleRecognitionResult;
+
+    recognition.start(); // Start speech recognition
   }
-};
-
 
   return (
     <div>
@@ -89,8 +123,14 @@ async function handleSend (){
               <div className="ms-auto d-flex align-items-center gap-2">
                 {/* Microphone */}
                 <button
+                  onClick={startVoiceRecognition}
                   className="btn btn-light rounded-circle d-flex align-items-center justify-content-center"
-                  style={{ width: "40px", height: "40px", color: "#a19286" }}
+                  style={{
+                    width: "40px",
+                    height: "40px",
+                    color: "#a19286",
+                    backgroundColor: isListening ? "lightgreen" : "transparent",
+                  }}
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
