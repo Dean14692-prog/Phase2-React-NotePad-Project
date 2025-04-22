@@ -12,7 +12,6 @@ export default function NoteList() {
       .catch((err) => console.log("Error fetching notes:", err));
   }, []);
 
-  // Handle note click
   function handleNoteClick(note) {
     setSelectedNote(note);
   }
@@ -37,10 +36,26 @@ export default function NoteList() {
     return firstThreeWords;
   }
 
-  // Format date and time
   function showDateTime(dateTimeString) {
     const date = new Date(dateTimeString);
     return date.toLocaleString();
+  }
+
+  let noteDetails;
+  if (selectedNote === null) {
+    noteDetails = <p>Select a note to view details</p>;
+  } else {
+    noteDetails = (
+      <div className="card">
+        <div className="card-header">
+          <strong>Created At:</strong> {showDateTime(selectedNote.date)}
+        </div>
+        <div className="card-body">
+          <h5 className="card-title">Note Content</h5>
+          <p className="card-text">{selectedNote.text}</p>
+        </div>
+      </div>
+    );
   }
 
   return (
@@ -68,19 +83,7 @@ export default function NoteList() {
 
         {/* Note detail display */}
         <div style={{ flex: 2, padding: "10px", borderLeft: "1px solid #ddd" }}>
-          {selectedNote ? (
-            <div className="card">
-              <div className="card-header">
-                <strong>Created At:</strong> {showDateTime(selectedNote.date)}
-              </div>
-              <div className="card-body">
-                <h5 className="card-title">Note Content</h5>
-                <p className="card-text">{selectedNote.text}</p>
-              </div>
-            </div>
-          ) : (
-            <p>Select a note to view details</p>
-          )}
+          {noteDetails}
         </div>
       </div>
     </div>
