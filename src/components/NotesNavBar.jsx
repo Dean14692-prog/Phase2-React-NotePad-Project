@@ -23,10 +23,15 @@ const noteAreaPopover = (
 
 export default function NavBarNotes({ searchTerm, onSearchChange }) {
   return (
-    <div className="container-fluid px-3 d-flex align-items-center justify-content-between">
+    <div className="container-fluid bg-light border-bottom py-3 px-4 d-flex justify-content-between align-items-center shadow-sm">
+     
       <div className="d-flex align-items-center">
         {/* Home Link with Popover */}
-        <OverlayTrigger trigger="hover" placement="bottom" overlay={homePopover}>
+        <OverlayTrigger
+          trigger="hover"
+          placement="bottom"
+          overlay={homePopover}
+        >
           <Link
             to="/landing"
             className="nav-link d-inline-block me-3 p-2 rounded hover-shadow btn btn-light d-flex align-items-center"
@@ -45,7 +50,11 @@ export default function NavBarNotes({ searchTerm, onSearchChange }) {
         </OverlayTrigger>
 
         {/* Notes List Link with Popover */}
-        <OverlayTrigger trigger="hover" placement="bottom" overlay={notesListPopover}>
+        <OverlayTrigger
+          trigger="hover"
+          placement="bottom"
+          overlay={notesListPopover}
+        >
           <Link
             to="/notes"
             className="nav-link d-inline-block me-3 p-2 rounded hover-shadow btn btn-light d-flex align-items-center"
@@ -65,7 +74,11 @@ export default function NavBarNotes({ searchTerm, onSearchChange }) {
         </OverlayTrigger>
 
         {/* Note Area Link with Popover */}
-        <OverlayTrigger trigger="hover" placement="bottom" overlay={noteAreaPopover}>
+        <OverlayTrigger
+          trigger="hover"
+          placement="bottom"
+          overlay={noteAreaPopover}
+        >
           <Link
             to="/home"
             className="nav-link d-inline-block me-3 p-2 rounded hover-shadow btn btn-light d-flex align-items-center"
@@ -83,7 +96,6 @@ export default function NavBarNotes({ searchTerm, onSearchChange }) {
           </Link>
         </OverlayTrigger>
       </div>
-
       {/* Search Box */}
       <form className="d-flex" role="search">
         <div className="position-relative">
@@ -96,9 +108,11 @@ export default function NavBarNotes({ searchTerm, onSearchChange }) {
               className="bi bi-search"
               viewBox="0 0 16 16"
             >
-              <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001l3.85 
+              <path
+                d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001l3.85 
               3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85zm-5.242.656a5.5 
-              5.5 0 1 1 0-11 5.5 5.5 0 0 1 0 11z" />
+              5.5 0 1 1 0-11 5.5 5.5 0 0 1 0 11z"
+              />
             </svg>
           </span>
           <input

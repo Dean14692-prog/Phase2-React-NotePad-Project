@@ -45,19 +45,21 @@ export default function NoteList() {
 
   return (
     <div>
-      <NavBarNotes
-        searchTerm={searchTerm}
-        onSearchChange={handleSearchChange}
-      />
+      <div>
+        <NavBarNotes
+          searchTerm={searchTerm}
+          onSearchChange={handleSearchChange}
+        />
+      </div>
 
-      <div className="container-fluid d-flex mt-3">
+      <div className="container-fluid d-flex mt-3 ps-3 border-start">
         {/* Notes List */}
         <div className="w-25 pe-2">
-          <ul className="list-group shadow-sm">
+          <ul className="list-group shadow-sm border bg-light">
             {filteredNotes.map((note) => (
               <li
                 key={note.id}
-                className="list-group-item list-group-item-action"
+                className="list-group-item list-group-item-action list-group-item-light"
                 style={{ cursor: "pointer" }}
                 onClick={() => handleNoteClick(note)}
               >
@@ -71,9 +73,8 @@ export default function NoteList() {
         <div className="w-75 ps-3 border-start">
           {selectedNote ? (
             <div className="card bg-light position-relative shadow-sm">
-              {/* Delete X button */}
               <button
-                className="btn position-absolute top-0 end-0 text-danger fs-4"
+                className="btn position-absolute top-0 end-0  fs-4"
                 style={{ border: "none", background: "none" }}
                 onClick={() => handleDeleteNote(selectedNote.id)}
               >
