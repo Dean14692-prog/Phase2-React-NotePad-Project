@@ -50,13 +50,14 @@ export default function NoteList() {
         onSearchChange={handleSearchChange}
       />
 
-      <div className="container fluid d-flex">
-        <div style={{ flex: 1, marginRight: "5px" }}>
-          <ul className="list-group">
+      <div className="container-fluid d-flex mt-3">
+        {/* Notes List */}
+        <div className="w-25 pe-2">
+          <ul className="list-group shadow-sm">
             {filteredNotes.map((note) => (
               <li
                 key={note.id}
-                className="list-group-item list-group-item-action border-0 shadow-sm bg-light"
+                className="list-group-item list-group-item-action"
                 style={{ cursor: "pointer" }}
                 onClick={() => handleNoteClick(note)}
               >
@@ -66,30 +67,26 @@ export default function NoteList() {
           </ul>
         </div>
 
-        <div style={{ flex: 2, padding: "10px", borderLeft: "1px solid #ddd" }}>
+        {/* Note Details */}
+        <div className="w-75 ps-3 border-start">
           {selectedNote ? (
-            <div className="card bg-light position-relative">
+            <div className="card bg-light position-relative shadow-sm">
+              {/* Delete X button */}
               <button
-                className="border-0 bg-transparent position-absolute"
-                style={{
-                  top: "0px",
-                  left: "688px",
-                  width: "36px",
-                  height: "36px",
-                  fontSize: "20px",
-                  padding: 0,
-                }}
+                className="btn position-absolute top-0 end-0 fs-4"
+                style={{ border: "none", background: "none" }}
                 onClick={() => handleDeleteNote(selectedNote.id)}
               >
                 &times;
               </button>
+
               <div className="card-body">
                 <h5 className="card-title">Note Content</h5>
                 <p className="card-text">{selectedNote.text}</p>
               </div>
             </div>
           ) : (
-            <p>Select a note to view details</p>
+            <div className="text-muted mt-3">Select a note to view details</div>
           )}
         </div>
       </div>
