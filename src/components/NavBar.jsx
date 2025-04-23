@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Popover, OverlayTrigger } from "react-bootstrap";
+import NavBarNotes from "/home/dean/Moringa/Phase2/notepad-app/src/components/NotesNavBar.jsx";
 
 export default function NavBar() {
   // Create popover content for each link
@@ -109,21 +110,10 @@ export default function NavBar() {
           </button>
 
           <div className="collapse navbar-collapse" id="navbarNav">
-            <ul className="navbar-nav ms-auto">
-              <li className="nav-item">
-                <a className="nav-link text-dark" href="#download">
-                  Download
-                </a>
-              </li>
-              <li className="nav-item ms-lg-3">
-                <button
-                  className="btn btn-warning rounded-circle d-flex align-items-center justify-content-center"
-                  style={{ width: "38px", height: "38px" }}
-                >
-                  DE
-                </button>
-              </li>
-            </ul>
+            {/* Move NavBarNotes to the far right */}
+            <div className="d-flex align-items-center ms-auto">
+              <NavBarNotes />
+            </div>
           </div>
         </div>
       </nav>

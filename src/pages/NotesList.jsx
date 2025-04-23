@@ -73,7 +73,7 @@ export default function NoteList() {
             <div className="card bg-light position-relative shadow-sm">
               {/* Delete X button */}
               <button
-                className="btn position-absolute top-0 end-0 fs-4"
+                className="btn position-absolute top-0 end-0 text-danger fs-4"
                 style={{ border: "none", background: "none" }}
                 onClick={() => handleDeleteNote(selectedNote.id)}
               >

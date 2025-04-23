@@ -2,12 +2,7 @@ import React from "react";
 
 export default function NavBarNotes({ searchTerm, onSearchChange }) {
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light px-4 py-2 sticky-top shadow-sm">
-      <a className="navbar-brand fw-bold" href="/">
-        MyApp
-      </a>
 
-      <div className="collapse navbar-collapse justify-content-end">
         <form className="d-flex" role="search">
           <div className="position-relative">
             <span className="position-absolute top-50 start-0 translate-middle-y ps-3 text-muted">
@@ -37,7 +32,6 @@ export default function NavBarNotes({ searchTerm, onSearchChange }) {
             />
           </div>
         </form>
-      </div>
-    </nav>
+
   );
 }
