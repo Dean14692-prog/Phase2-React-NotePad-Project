@@ -1,29 +1,8 @@
 import React, { useState } from "react";
 import NavBar from "../components/NavBar";
 
-// Declare webkitSpeechRecognition as a global variable to avoid ESLint error
-const SpeechRecognition =
-  window.SpeechRecognition || window.webkitSpeechRecognition;
-
 export default function NoteArea() {
   const [note, setNote] = useState("");
-  const [isListening, setIsListening] = useState(false); // Track listening state
-
-  // Handle the start of voice recognition
-  const handleStartListening = () => {
-    setIsListening(true); // Set listening state to true
-  };
-
-  // Handle the end of voice recognition
-  const handleStopListening = () => {
-    setIsListening(false); // Set listening state to false
-  };
-
-  // Handle speech recognition result
-  const handleRecognitionResult = (event) => {
-    const spokenText = event.results[0][0].transcript; // Get the recognized text
-    setNote((prevNote) => prevNote + " " + spokenText); // Append the spoken text to the note
-  };
 
   async function handleSend() {
     if (!note.trim()) {
@@ -45,24 +24,6 @@ export default function NoteArea() {
     }
   }
 
-  // Start voice recognition
-  function startVoiceRecognition() {
-    if (!SpeechRecognition) {
-      alert("Your browser doesn't support voice input.");
-      return;
-    }
-
-    const recognition = new SpeechRecognition();
-    recognition.lang = "en-US"; // Set the language for recognition
-
-    // Assign separate functions for onstart, onend, and onresult
-    recognition.onstart = handleStartListening;
-    recognition.onend = handleStopListening;
-    recognition.onresult = handleRecognitionResult;
-
-    recognition.start(); // Start speech recognition
-  }
-
   return (
     <div>
       <NavBar />
@@ -78,7 +39,7 @@ export default function NoteArea() {
             style={{ borderRadius: "30px" }}
           >
             <div className="card-body d-flex align-items-center gap-2 flex-wrap">
-              {/* Search input */}
+              {/* Note input */}
               <input
                 type="text"
                 value={note}
@@ -121,31 +82,7 @@ export default function NoteArea() {
               </button>
 
               <div className="ms-auto d-flex align-items-center gap-2">
-                {/* Microphone */}
-                <button
-                  onClick={startVoiceRecognition}
-                  className="btn btn-light rounded-circle d-flex align-items-center justify-content-center"
-                  style={{
-                    width: "40px",
-                    height: "40px",
-                    color: "#a19286",
-                    backgroundColor: isListening ? "lightgreen" : "transparent",
-                  }}
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="26"
-                    height="26"
-                    fillRule="currentColor"
-                    className="bi bi-mic"
-                    viewBox="0 0 16 16"
-                  >
-                    <path d="M3.5 6.5A.5.5 0 0 1 4 7v1a4 4 0 0 0 8 0V7a.5.5 0 0 1 1 0v1a5 5 0 0 1-4.5 4.975V15h3a.5.5 0 0 1 0 1h-7a.5.5 0 0 1 0-1h3v-2.025A5 5 0 0 1 3 8V7a.5.5 0 0 1 .5-.5" />
-                    <path d="M10 8a2 2 0 1 1-4 0V3a2 2 0 1 1 4 0zM8 0a3 3 0 0 0-3 3v5a3 3 0 0 0 6 0V3a3 3 0 0 0-3-3" />
-                  </svg>
-                </button>
-
-                {/* Send Button*/}
+                {/* Send Button */}
                 <button
                   onClick={handleSend}
                   className="btn btn-dark rounded-circle d-flex align-items-center justify-content-center"

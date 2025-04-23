@@ -1,38 +1,6 @@
 {
   "notes": [
     {
-      "id": "b5ee",
-      "text": "Prior to joining the Mantrac Group as CEO in 2007, Loutfy Mansour worked as an Analyst in the Investment Banking Division of Goldman Sachs in London, where he was part of the Industrials and Natural Resources Advisory team."
-    },
-    {
-      "id": "0143",
-      "text": "import React, { useEffect, useState } from \"react\"; import NavBar from \"../components/NavBar\";  export default function NoteList() {   const [notes, setNotes] = useState([]);   const [selectedNote, setSelectedNote] = useState(null);    useEffect(() => {     fetch(\"http://localhost:3001/notes\")       .then((res) => res.json())       .then((data) => setNotes(data))       .catch((err) => console.log(\"Error fetching notes:\", err));   }, []);    // Handle note click   function handleNoteClick(note) {     setSelectedNote(note);   }    // Get the first 3 words of the note text   function getFirstThreeWords(text) {     if (!text) return \"\";      const words = text.split(\" \");     const firstThreeWordsArray = words.slice(0, 3);     const firstThreeWords = firstThreeWordsArray.join(\" \");      return words.length > 3 ? firstThreeWords + \"...\" : firstThreeWords;   }    // Format date and time   function showDateTime(dateTimeString) {     const date = new Date(dateTimeString);     return date.toLocaleString();   }    return (     <div>       <NavBar />       <h2 className=\"text-center\">Notes</h2>        <div className=\"container fluid d-flex\">         {/* Notes list */}         <div style={{ flex: 1, marginRight: \"10px\" }}>           <ul className=\"list-group\">             {notes.map((note) => (               <li                 key={note.id}                 className=\"list-group-item list-group-item-action border-0\"                 style={{ cursor: \"pointer\" }}                 onClick={() => handleNoteClick(note)}               >                 <div className=\"fw-bold\">{showDateTime(note.date)}</div>                 {getFirstThreeWords(note.text)}               </li>             ))}           </ul>         </div>          {/* Note detail display */}         <div style={{ flex: 2, padding: \"10px\", borderLeft: \"1px solid #ddd\" }}>           {selectedNote ? (             <div className=\"card\">               <div className=\"card-header\">                 <strong>Created At:</strong> {showDateTime(selectedNote.date)}               </div>               <div className=\"card-body\">                 <h5 className=\"card-title\">Note Content</h5>                 <p className=\"card-text\">{selectedNote.text}</p>               </div>             </div>           ) : (             <p>Select a note to view details</p>           )}         </div>       </div>     </div>   ); }"
-    },
-    {
-      "id": "4ecb",
-      "text": "qwertyuioplkjxcv bn,m"
-    },
-    {
-      "id": "955d",
-      "text": "Good good good good morning"
-    },
-    {
-      "id": "5c5e",
-      "text": "Muasya Ngui"
-    },
-    {
-      "id": "fe12",
-      "text": "Morning Class"
-    },
-    {
-      "id": "0056",
-      "text": "hjhjhj "
-    },
-    {
-      "id": "7703",
-      "text": "ghhghgh"
-    },
-    {
       "id": "eb3d",
       "text": "Deean"
     },
@@ -41,8 +9,16 @@
       "text": " my name is Dennis please come to my office"
     },
     {
-      "id": "2371",
-      "text": " my name is Dennis please please come to the office I want to see you and bring the assignment with you otherwise have a good day"
+      "id": "b1c2",
+      "text": "Dean"
+    }
+  ],
+  "reports": [
+    {
+      "id": "b8b9",
+      "name": "Dennis Ngui",
+      "email": "dennismuasyangui@gmail.com",
+      "description": "Security"
     }
   ]
 }

@@ -5,6 +5,7 @@ import LandingPage from "./pages/Landing";
 import NoteList from "./pages/NotesList";
 import NoteArea from "./pages/HomePage";
 import NoPage from "./pages/NoPage";
+import AbuseReport from "./components/AbuseForm";
 
 
 export default function App() {
@@ -15,6 +16,7 @@ export default function App() {
         <Route path="/landing" element={<LandingPage />} />
         <Route path="/notes" element={<NoteList />} />
         <Route path="/home" element={<NoteArea />} />
+        <Route path="/abuse" element={<AbuseReport />} />
         <Route path="*" element={<NoPage />} />
       </Routes>
     </div>

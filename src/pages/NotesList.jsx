@@ -27,41 +27,14 @@ export default function NoteList() {
       .catch((err) => console.log("Error deleting note:", err));
   }
 
-function handleDownloadNote(note) {
-  // Create a new text file from the note's text
-  const file = new Blob([note.text], { type: "text/plain" });
-
-  // Create an anchor element to trigger the download
-  const link = document.createElement("a");
-
-  // Create a link to the file we just created
-  link.href = URL.createObjectURL(file);
-
-  // Set the name of the file to be downloaded
-  link.download = `Note-${note.id}.txt`;
-
-  // Trigger the download
-  link.click();
-}
-
-
-  // Function to get the first 3 words of the note text
   function getFirstThreeWords(text) {
-    if (!text) return ""; // Return an empty string if text is undefined, null, or empty
-
-    const words = text.split(" "); // Split the text into an array of words
-
-    // Slice the first 3 words from the array
+    if (!text) return "";
+    const words = text.split(" ");
     const firstThreeWordsArray = words.slice(0, 3);
-
-    // Join the first 3 words with a space
     const firstThreeWords = firstThreeWordsArray.join(" ");
-
-    // If there are more than 3 words, add "..."
     if (words.length > 3) {
       return firstThreeWords + "...";
     }
-
     return firstThreeWords;
   }
 
@@ -70,32 +43,25 @@ function handleDownloadNote(note) {
     noteDetails = <p>Select a note to view details</p>;
   } else {
     noteDetails = (
-      <div className="card bg-light">
-        <div className="card-header d-flex justify-content-start align-items-center">
-          <div>
-            <button
-              className="btn btn-sm btn-danger rounded-circle p-3"
-              onClick={() => handleDeleteNote(selectedNote.id)}
-              style={{
-                fontSize: "20px",
-                lineHeight: "1",
-                width: "40px",
-                height: "40px",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              &times;
-            </button>
-            <button
-              className="btn btn-sm btn-primary ms-2"
-              onClick={() => handleDownloadNote(selectedNote)}
-            >
-              Download
-            </button>
-          </div>
-        </div>
+      <div className="card bg-light position-relative">
+        
+        <button
+          className="border-0 bg-transparent position-absolute"
+          style={{
+            top: "0px",
+            left: "688px",
+            width: "36px",
+            height: "36px",
+            fontSize: "20px",
+           
+            padding: 0,
+            
+          }}
+          onClick={() => handleDeleteNote(selectedNote.id)}
+        >
+          &times;
+        </button>
+
         <div className="card-body">
           <h5 className="card-title">Note Content</h5>
           <p className="card-text">{selectedNote.text}</p>
@@ -107,16 +73,16 @@ function handleDownloadNote(note) {
   return (
     <div>
       <NavBar />
-      <h2 className="text-center">Notes</h2>
+    
 
       <div className="container fluid d-flex">
         {/* Notes list */}
-        <div style={{ flex: 1, marginRight: "10px" }}>
+        <div style={{ flex: 1, marginRight: "5px" }}>
           <ul className="list-group">
             {notes.map((note) => (
               <li
                 key={note.id}
-                className="list-group-item list-group-item-action border-0"
+                className="list-group-item list-group-item-action border-0 shadow-sm bg-light"
                 style={{ cursor: "pointer" }}
                 onClick={() => handleNoteClick(note)}
               >
