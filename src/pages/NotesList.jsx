@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
-import NavBar from "../components/NavBar";
+import NavBarNotes from "../components/NotesNavBar";
 
 export default function NoteList() {
   const [notes, setNotes] = useState([]);
   const [selectedNote, setSelectedNote] = useState(null);
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     fetch("http://localhost:3001/notes")
@@ -12,11 +13,15 @@ export default function NoteList() {
       .catch((err) => console.log("Error fetching notes:", err));
   }, []);
 
-  function handleNoteClick(note) {
-    setSelectedNote(note);
-  }
+  const handleSearchChange = (event) => {
+    setSearchTerm(event.target.value);
+  };
 
-  function handleDeleteNote(id) {
+  const handleNoteClick = (note) => {
+    setSelectedNote(note);
+  };
+
+  const handleDeleteNote = (id) => {
     fetch(`http://localhost:3001/notes/${id}`, {
       method: "DELETE",
     })
@@ -25,61 +30,30 @@ export default function NoteList() {
         setSelectedNote(null);
       })
       .catch((err) => console.log("Error deleting note:", err));
-  }
+  };
 
-  function getFirstThreeWords(text) {
+  const getFirstThreeWords = (text) => {
     if (!text) return "";
     const words = text.split(" ");
-    const firstThreeWordsArray = words.slice(0, 3);
-    const firstThreeWords = firstThreeWordsArray.join(" ");
-    if (words.length > 3) {
-      return firstThreeWords + "...";
-    }
-    return firstThreeWords;
-  }
+    const firstThree = words.slice(0, 3).join(" ");
+    return words.length > 3 ? firstThree + "..." : firstThree;
+  };
 
-  let noteDetails;
-  if (selectedNote === null) {
-    noteDetails = <p>Select a note to view details</p>;
-  } else {
-    noteDetails = (
-      <div className="card bg-light position-relative">
-        
-        <button
-          className="border-0 bg-transparent position-absolute"
-          style={{
-            top: "0px",
-            left: "688px",
-            width: "36px",
-            height: "36px",
-            fontSize: "20px",
-           
-            padding: 0,
-            
-          }}
-          onClick={() => handleDeleteNote(selectedNote.id)}
-        >
-          &times;
-        </button>
-
-        <div className="card-body">
-          <h5 className="card-title">Note Content</h5>
-          <p className="card-text">{selectedNote.text}</p>
-        </div>
-      </div>
-    );
-  }
+  const filteredNotes = notes.filter((note) =>
+    note.text.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   return (
     <div>
-      <NavBar />
-    
+      <NavBarNotes
+        searchTerm={searchTerm}
+        onSearchChange={handleSearchChange}
+      />
 
       <div className="container fluid d-flex">
-        {/* Notes list */}
         <div style={{ flex: 1, marginRight: "5px" }}>
           <ul className="list-group">
-            {notes.map((note) => (
+            {filteredNotes.map((note) => (
               <li
                 key={note.id}
                 className="list-group-item list-group-item-action border-0 shadow-sm bg-light"
@@ -92,9 +66,31 @@ export default function NoteList() {
           </ul>
         </div>
 
-        {/* Note detail display */}
         <div style={{ flex: 2, padding: "10px", borderLeft: "1px solid #ddd" }}>
-          {noteDetails}
+          {selectedNote ? (
+            <div className="card bg-light position-relative">
+              <button
+                className="border-0 bg-transparent position-absolute"
+                style={{
+                  top: "0px",
+                  left: "688px",
+                  width: "36px",
+                  height: "36px",
+                  fontSize: "20px",
+                  padding: 0,
+                }}
+                onClick={() => handleDeleteNote(selectedNote.id)}
+              >
+                &times;
+              </button>
+              <div className="card-body">
+                <h5 className="card-title">Note Content</h5>
+                <p className="card-text">{selectedNote.text}</p>
+              </div>
+            </div>
+          ) : (
+            <p>Select a note to view details</p>
+          )}
         </div>
       </div>
     </div>
